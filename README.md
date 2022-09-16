@@ -11,3 +11,7 @@ Commands to execute it
 
 docker build -t myimage .  
 docker run -d --name mycontainer -p 80:80 myimage
+
+to execute tests (right after the previous commands)
+
+docker exec mycontainer bash -c "pytest"
