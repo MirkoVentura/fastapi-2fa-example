@@ -120,7 +120,6 @@ class TestVerifyOTP:
             json = {"username": "mirrr"})
         assert response.status_code == 422
 
-    def test_post_request_with_proper_body_returns_200_with_otp_challange(self, delete_database):
         response = client.post(
             "/users/register",
             json={"username": "miro", "password": "mi3333", "fullname": "MIROKO ", "email":"mirko@aaa.com", "need_otp": True}
