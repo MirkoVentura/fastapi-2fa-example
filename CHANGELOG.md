@@ -11,3 +11,4 @@ Types of changes:
 ## [v1.0.0]
 - New automation for release pull request
 - more tests
+- test number 2
