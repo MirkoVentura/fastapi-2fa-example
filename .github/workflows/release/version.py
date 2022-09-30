@@ -11,8 +11,8 @@ REGEX_VERSION = r'^([\w]+-[\w]+-[\w]+)' #r'^[0-9]\-[0-9]\-[0-9]$'
 
 if __name__ == '__main__':
     lines = BRANCH_NAME.split('-', 1)
-    changelog = lines.first()
-    version_name = lines.last()
+    changelog = lines[0]
+    version_name = lines[len(lines)-1]
     if (changelog == version_name) :
         version_name = ' 🙂 '
     name = version_name.replace(version_name + '-', '')
