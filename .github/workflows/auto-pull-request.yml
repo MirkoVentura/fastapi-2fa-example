@@ -3,7 +3,7 @@ on:
     branches:
 
 jobs:
-  create-changelog-pull-request:
+  automatic-pr-for-release:
     if: ${{ startsWith(github.ref, 'refs/heads/release') }}
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: 'To Dev: ${{ env.version }}-${{ env.branch_name }}',
+              title: 'Dev Sync: ${{ env.version }}-${{ env.branch_name }}',
               owner,
               repo,
               head: '${{ github.ref_name }}',
@@ -66,7 +66,7 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: 'to Master: ${{ env.version }}-${{ env.branch_name }}',
+              title: 'Master Sync: ${{ env.version }}-${{ env.branch_name }}',
               owner,
               repo,
               head: '${{ github.ref_name }}',
