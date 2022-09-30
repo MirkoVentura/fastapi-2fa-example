@@ -34,7 +34,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<github-actions-bot@everli.com>"
-
       # Create pull request.
       - name: Create Pull Request
         uses: actions/github-script@v6
@@ -43,43 +42,43 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: '${{ env.version }} TO Develop',
+              title: 'To Dev: ${{ env.version }}-${{ env.branch_name }}',
               owner,
               repo,
               head: '${{ github.ref_name }}',
               base: 'dev',
-              body: ${{ env.version }}-${{ env.branch_name }} TO Develop',
+              body: 'Changelog: v${{ env.version }}-${{ env.branch_name }}',
             });
             github.rest.issues.update({
               owner,
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['release','this-first']
+              labels: ['ready-for-review']
             });
             return result.data.html_url
           result-encoding: string
-      # Create pull request release to master.
+      # Create pull request.
       - name: Create Pull Request
         uses: actions/github-script@v6
-        id: relToMaster
+        id: pr-1
         with:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: '${{ env.version }} TO Master:',
+              title: 'to Master: ${{ env.version }}-${{ env.branch_name }}',
               owner,
               repo,
               head: '${{ github.ref_name }}',
               base: 'main',
-              body: '${{ env.version }}-${{ env.branch_name }} TO Master',
+              body: 'Changelog: v${{ env.version }}-${{ env.branch_name }}',
             });
             github.rest.issues.update({
               owner,
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['release','needs-apple-approval']
+              labels: ['ready-for-review']
             });
             return result.data.html_url
           result-encoding: string
