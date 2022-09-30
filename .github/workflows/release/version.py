@@ -13,9 +13,8 @@ if __name__ == '__main__':
     lines = BRANCH_NAME.split('-', 1)
     changelog = lines.first()
     version_name = lines.last()
-    if (changelog == version_name) {
+    if (changelog == version_name) :
         version_name = ' 🙂 '
-    }
     name = version_name.replace(version_name + '-', '')
     version_name = version_name.replace('-', '.')
 
