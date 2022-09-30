@@ -62,7 +62,7 @@ jobs:
       # Create pull request release to master.
       - name: Create Pull Request
         uses: actions/github-script@v6
-        id: pr
+        id: relToMaster
         with:
           script: |
             const { repo, owner } = context.repo;
