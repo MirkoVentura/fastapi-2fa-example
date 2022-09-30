@@ -24,3 +24,6 @@ Types of changes:
 
 ## [v1.1.1]
 - creata anche Release to master
+
+## [v1.1.3]
+- creata anche Release to master
