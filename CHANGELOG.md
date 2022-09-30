@@ -18,3 +18,6 @@ Types of changes:
 
 ## [v1.1.0]
 - test con le api rest invece che con l'action
+
+## [v1.1.1]
+- test di nuovo
