@@ -21,3 +21,6 @@ Types of changes:
 
 ## [v1.1.1]
 - test di nuovo
+
+## [v1.1.1]
+- creata anche Release to master
