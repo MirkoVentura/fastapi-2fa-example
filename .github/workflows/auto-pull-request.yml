@@ -43,12 +43,12 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: '${{ env.version }} -> Develop',
+              title: '${{ env.version }} TO Develop',
               owner,
               repo,
               head: '${{ github.ref_name }}',
               base: 'dev',
-              body: ${{ env.version }}-${{ env.branch_name }} -> Develop',
+              body: ${{ env.version }}-${{ env.branch_name }} TO Develop',
             });
             github.rest.issues.update({
               owner,
@@ -67,12 +67,12 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: '${{ env.version }} -> Master:',
+              title: '${{ env.version }} TO Master:',
               owner,
               repo,
               head: '${{ github.ref_name }}',
               base: 'main',
-              body: '${{ env.version }}-${{ env.branch_name }} -> Master',
+              body: '${{ env.version }}-${{ env.branch_name }} TO Master',
             });
             github.rest.issues.update({
               owner,
