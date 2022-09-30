@@ -54,7 +54,7 @@ jobs:
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['ready-for-review']
+              labels: ['release','this-first']
             });
             return result.data.html_url
           result-encoding: string
@@ -78,7 +78,7 @@ jobs:
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['ready-for-review']
+              labels: ['release','need-apple-approval']
             });
             return result.data.html_url
           result-encoding: string
