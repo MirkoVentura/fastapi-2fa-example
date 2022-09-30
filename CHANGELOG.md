@@ -30,3 +30,6 @@ Types of changes:
 
 ## [v1.1.4]
 - test su test fino a quando non va
+
+## [v1.1.5]
+- version name

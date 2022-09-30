@@ -10,7 +10,12 @@ BRANCH_NAME = os.getenv('branch');
 REGEX_VERSION = r'^([\w]+-[\w]+-[\w]+)' #r'^[0-9]\-[0-9]\-[0-9]$'
 
 if __name__ == '__main__':
-    changelog, version_name = BRANCH_NAME.split('-', 1)
+    lines = BRANCH_NAME.split('-', 1)
+    changelog = lines.first()
+    version_name = lines.last()
+    if (changelog == version_name) {
+        version_name = ' 🙂 '
+    }
     name = version_name.replace(version_name + '-', '')
     version_name = version_name.replace('-', '.')
 
