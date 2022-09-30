@@ -3,7 +3,7 @@ on:
     branches:
 
 jobs:
-  create-changelog-pull-request:
+  automatic-pr-for-release:
     if: ${{ startsWith(github.ref, 'refs/heads/release') }}
     runs-on: ubuntu-latest
     steps:
@@ -34,7 +34,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<github-actions-bot@everli.com>"
-
       # Create pull request.
       - name: Create Pull Request
         uses: actions/github-script@v6
@@ -43,7 +42,7 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: 'changelog: ${{ env.version }}-${{ env.branch_name }}',
+              title: 'Dev Sync: ${{ env.version }}-${{ env.branch_name }}',
               owner,
               repo,
               head: '${{ github.ref_name }}',
@@ -55,7 +54,31 @@ jobs:
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['ready-for-review']
+              labels: ['release','this-first']
+            });
+            return result.data.html_url
+          result-encoding: string
+      # Create pull request.
+      - name: Create Pull Request
+        uses: actions/github-script@v6
+        id: pr-1
+        with:
+          script: |
+            const { repo, owner } = context.repo;
+            const result = await github.rest.pulls.create({
+              title: 'Master Sync: ${{ env.version }}-${{ env.branch_name }}',
+              owner,
+              repo,
+              head: '${{ github.ref_name }}',
+              base: 'main',
+              body: 'Changelog: v${{ env.version }}-${{ env.branch_name }}',
+            });
+            github.rest.issues.update({
+              owner,
+              repo,
+              issue_number: result.data.number,
+              assignees: ['${{ github.actor }}'],
+              labels: ['release','need-apple-approval']
             });
             return result.data.html_url
           result-encoding: string

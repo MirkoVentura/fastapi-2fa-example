@@ -18,3 +18,22 @@ Types of changes:
 
 ## [v1.1.0]
 - test con le api rest invece che con l'action
+
+## [v1.1.1]
+- test di nuovo
+
+## [v1.1.1]
+- creata anche Release to master
+
+## [v1.1.3]
+- creata anche Release to master
+
+## [v1.1.4]
+- test su test fino a quando non va
+
+## [v1.1.5]
+- version name
+
+## [v1.1.9]
+- version name
+- fix body
