@@ -55,7 +55,7 @@ jobs:
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['release','THIS FIRST!!']
+              labels: ['release','THIS%20FIRST%21%21']
             });
             return result.data.html_url
           result-encoding: string
@@ -79,7 +79,7 @@ jobs:
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['release','NEEDS Apple\'s approval']
+              labels: ['release','/NEEDS%20Apple%27s%20approval']
             });
             return result.data.html_url
           result-encoding: string

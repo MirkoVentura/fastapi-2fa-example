@@ -15,4 +15,4 @@ if __name__ == '__main__':
     version_name = version_name.replace('-', '.')
 
     print('branch_name={}'.format(name))
-    print('version={}'.format(version_name))
+    print('version={}'.format(changelog))
