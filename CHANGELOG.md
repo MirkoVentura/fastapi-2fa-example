@@ -15,3 +15,6 @@ Types of changes:
 - Ma sient, song a voc chi n'ten niend
 - A furia di cercati per il mondo...
 - panico panico
+
+## [v1.1.0]
+- test con le api rest invece che con l'action
