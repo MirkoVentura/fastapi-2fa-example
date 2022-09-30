@@ -43,19 +43,43 @@ jobs:
           script: |
             const { repo, owner } = context.repo;
             const result = await github.rest.pulls.create({
-              title: 'changelog: ${{ env.version }}-${{ env.branch_name }}',
+              title: '${{ env.version }} -> Develop',
               owner,
               repo,
               head: '${{ github.ref_name }}',
               base: 'dev',
-              body: 'Changelog: v${{ env.version }}-${{ env.branch_name }}',
+              body: ${{ env.version }}-${{ env.branch_name }} -> Develop',
             });
             github.rest.issues.update({
               owner,
               repo,
               issue_number: result.data.number,
               assignees: ['${{ github.actor }}'],
-              labels: ['ready-for-review']
+              labels: ['release','THIS FIRST!!']
+            });
+            return result.data.html_url
+          result-encoding: string
+      # Create pull request release to master.
+      - name: Create Pull Request
+        uses: actions/github-script@v6
+        id: pr
+        with:
+          script: |
+            const { repo, owner } = context.repo;
+            const result = await github.rest.pulls.create({
+              title: '${{ env.version }} -> Master:',
+              owner,
+              repo,
+              head: '${{ github.ref_name }}',
+              base: 'main',
+              body: '${{ env.version }}-${{ env.branch_name }} -> Master',
+            });
+            github.rest.issues.update({
+              owner,
+              repo,
+              issue_number: result.data.number,
+              assignees: ['${{ github.actor }}'],
+              labels: ['release','NEEDS Apple\'s approval']
             });
             return result.data.html_url
           result-encoding: string
