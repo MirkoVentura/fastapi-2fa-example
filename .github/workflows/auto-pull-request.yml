@@ -34,6 +34,11 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<github-actions-bot@everli.com>"
+      # Wait 30 Seconds to not overlap bitrise
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
       # Create pull request.
       - name: Create Pull Request
         uses: actions/github-script@v6
